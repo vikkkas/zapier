@@ -24,7 +24,7 @@ model User {
 model Zap {
   id        String   @id @default(uuid())
   triggerId String
-  userId    Int      @default(1)
+  userId    Int
   trigger   Trigger?
   actions   Action[]
   ZapRuns   ZapRun[]
