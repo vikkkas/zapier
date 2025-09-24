@@ -3,17 +3,16 @@ import { Appbar } from "@/components/Appbar";
 import { PrimaryButton } from "@/components/buttons/PrimaryButton";
 import { CheckFeature } from "@/components/CheckFeature";
 import Input from "@/components/Input";
-import { useRouter } from "next/navigation";
+import axios from "axios";
 import { useState } from "react";
 import { BACKEDND_URL } from "../config";
-import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const router = useRouter();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   return (
     <div>
       <Appbar />
@@ -29,14 +28,6 @@ export default function Signup() {
           </div>
         </div>
         <div className="flex-1 mt-18 px-4 max-w-4xl border border-gray-300 rounded-lg shadow-lg p-8">
-          <Input
-            label="Name"
-            type="text"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            placeholder="Your name"
-          />
           <Input
             label="Email"
             type="text"
@@ -54,21 +45,15 @@ export default function Signup() {
             placeholder="Password"
           />
           <div className="pt-8">
-            <PrimaryButton
-              size="big"
-              onClick={async () => {
-                const res = await axios.post(
-                  `${BACKEDND_URL}/api/v1/user/signup`,
-                  {
-                    username: email,
-                    password,
-                    name,
-                  }
-                );
-                router.push("/login");
-              }}
-            >
-              Get Started Free
+            <PrimaryButton size="big" onClick={async() => {
+              const res =await axios.post(`${BACKEDND_URL}/api/v1/user/signin`, {
+                username:email,
+                password,
+              })
+              localStorage.setItem("token", res.data?.token);
+              router.push('/dashboard')
+            }}>
+              Login
             </PrimaryButton>
           </div>
         </div>

@@ -23,4 +23,4 @@ export const Appbar = () => {
             }}>Sign Up</PrimaryButton>
         </div>
     </div>
-}
+}   

@@ -1,11 +1,14 @@
 "use client";
+import { useRouter } from "next/navigation"
 import { PrimaryButton } from "./buttons/PrimaryButton";
 import { SecondaryButton } from "./buttons/SecondaryButton";
 import { Feature } from "./Feature";
 
 export const Hero = () => {
+  const router = useRouter();
+
   return (
-    <>
+    <div className="flex flex-col items-center justify-center pt- px-4">
       <div className="text-5xl font-semibold text-center mt-20 max-w-2xl mx-auto">
         Automate as fast as you can type
       </div>
@@ -18,8 +21,8 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="flex justify-center gap-4 mt-8">
-        <PrimaryButton size="big" onClick={() => {}}>
+      <div className="flex justify-center items-center w-[60%] gap-4 mt-8">
+        <PrimaryButton size="big" onClick={() => {router.push('/signup')}}>
           Get Started Free
         </PrimaryButton>
         <SecondaryButton onClick={() => {}} size="big">
@@ -32,6 +35,6 @@ export const Hero = () => {
         <Feature title={"More apps"} subtitle="than any other platforms" />
         <Feature title={"Cutting edge"} subtitle="AI features" />
       </div>
-    </>
+    </div>
   );
 };
