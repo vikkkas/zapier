@@ -34,6 +34,6 @@ app.post("/hooks/catch/:userId/:zapId",async (req,res)=> {
     // push it to a queue for processing (redis/kafka)
 })
 
-app.listen(8080, () => {
-    console.log("Server is running on port 8080");
+app.listen(8081, () => {
+    console.log("Server is running on port 8081");
 });
